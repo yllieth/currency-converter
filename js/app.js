@@ -163,4 +163,18 @@ angular
         convert(this.toConvert, this.selector.from, this.selector.to);
       }
     }
+
+    this.switchCurrencies = function() {
+      this.readyToConvert = isSettedUp(this.selector);
+      if (this.readyToConvert === true) {
+        var old = angular.copy(this.selector);
+
+        this.selector.from = old.to;
+        this.currencies.to = CURRENCIES.filter(function(currency) {
+          return currency != old.to;
+        });
+        this.selector.to = old.from;
+        convert(this.toConvert, this.selector.from, this.selector.to);
+      }
+    }
   })

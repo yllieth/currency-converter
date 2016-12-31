@@ -26,3 +26,7 @@ select {
   margin-left: 5px;
   cursor: pointer;
 }
+
+.cursor-pointer {
+  cursor: pointer;
+}
