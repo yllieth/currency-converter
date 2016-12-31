@@ -1,0 +1,104 @@
+<!doctype html>
+<html ng-app="ExtensionApp">
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="A basic chrome extension providing a devise converter">
+    <meta name="author" content="Sylvain RAGOT">
+    
+    <title>A basic chrome extension providing a devise converter</title>
+    
+    <!-- Scripts -->
+    <!--<script type="text/javascript" src="js/xml2json.js"></script>-->
+    <script type="text/javascript" src="js/angular-1.5.6-min.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
+    
+    <!-- Cascading Style Sheets -->
+    <link href="css/foundation-flex-6.3.0.css" rel="stylesheet" media="screen">
+    <link href="css/main.css" rel="stylesheet" media="screen">    
+  </head>
+  
+  <body ng-controller="PopupController as Converter">
+    <div class="row">
+      <div class="column text-center">
+        <h1>Devise converter</h1>
+      </div>
+    </div>
+
+    <hr/>
+
+    <!-- Selectors -->
+    <div class="row">
+      <div class="column small-5">
+        <select 
+          ng-model="Converter.selector.from" 
+          ng-change="Converter.onBaseChange()"
+          ng-options="currency as currency for currency in Converter.currencies.from">
+        </select>
+      </div>
+
+      <div class="column small-2">
+        
+      </div>
+
+      <div class="column small-5">
+        <select 
+          ng-model="Converter.selector.to" 
+          ng-change="Converter.onDestChange()"
+          ng-options="currency as currency for currency in Converter.currencies.to">
+        </select>
+      </div>
+    </div>
+
+    <hr />
+
+    <!-- Convertion -->
+    <div class="row">
+      <div class="column">
+        <div class="input-group">
+          <kbd class="input-group-label">{{ Converter.selector.from }}</kbd>
+          <input class="input-group-field" type="number" ng-model="Converter.toConvert" ng-change="Converter.convert()">
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="column">
+        <div class="input-group result">
+          <kbd class="input-group-label">{{ Converter.selector.to }}</kbd>
+          <input class="input-group-field" type="text" disabled="disabled" ng-model="Converter.result">
+        </div>
+      </div>
+    </div>
+    
+    <hr/>
+
+    <!-- Details -->
+    <div class="row" ng-show="Converter.readyToConvert">
+      <div class="column">
+        <!-- Rate -->
+        <div>
+          <small class="text-secondary">
+            Rate: 
+            {{ 1                    | currency : Converter.selector.from : 2 }} = 
+            {{ Converter.rate.value | currency : Converter.selector.to   : 2 }}
+          </small>
+        </div>
+
+        <!-- Last update -->
+        <div>
+          <small class="text-secondary">
+            Last update: {{ Converter.rate.lastUpdate | date : 'medium' }}
+          </small>
+        </div>
+
+        <!-- Source -->
+        <div>
+          <small class="text-secondary">
+            From <em>{{ Converter.rate.source }}</em>
+            <span class="refresh-button" ng-click="Converter.resetCache()">Refresh</span>
+          </small>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

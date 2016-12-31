@@ -1,0 +1,13 @@
+{
+	"manifest_version": 2,
+	"name" :"Devise Converter",
+	"version" :"0.1",
+	"description" :"Simple devise converter - Pub free - No unneeded authorization ...",
+	"browser_action" : {
+		"default_icon": "img/cash-converter.png",
+		"default_popup" :"popup.html"
+	},
+	"icons": {
+		"100": "img/cash-converter.png"
+	}
+}
