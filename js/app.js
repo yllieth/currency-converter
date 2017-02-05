@@ -103,7 +103,7 @@ angular
     this.currencies = {
       from: CURRENCIES,
       to: []
-    }
+    };
 
     // Chosen currencies
   	this.selector = {
@@ -135,7 +135,7 @@ angular
         this.toConvert = 1;
         convert(this.toConvert, this.selector.from, this.selector.to);
       }
-    }
+    };
 
     this.onDestChange = function() {
       this.readyToConvert = isSettedUp(this.selector);
@@ -144,7 +144,7 @@ angular
         this.toConvert = 1;
         convert(this.toConvert, this.selector.from, this.selector.to);
       }
-    }
+    };
 
     this.convert = function() {
       var readyToConvert = isSettedUp(this.selector);
@@ -153,7 +153,7 @@ angular
       if (readyToConvert && convertible) {
         this.result = this.toConvert * this.rate.value;
       }
-    }
+    };
 
     this.resetCache = function() {
       localStorage.clear();
@@ -162,7 +162,7 @@ angular
       if (this.readyToConvert === true) {
         convert(this.toConvert, this.selector.from, this.selector.to);
       }
-    }
+    };
 
     this.switchCurrencies = function() {
       this.readyToConvert = isSettedUp(this.selector);
@@ -177,4 +177,4 @@ angular
         convert(this.toConvert, this.selector.from, this.selector.to);
       }
     }
-  })
+  });
