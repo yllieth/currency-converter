@@ -18,108 +18,120 @@
   </head>
   
   <body ng-controller="PopupController as Converter">
-    <div class="row">
-      <div class="column text-center">
-        <h1>Devise converter</h1>
-      </div>
-    </div>
-
-    <hr/>
-
-    <!-- Selectors -->
-    <div class="row align-middle">
-      <div class="column small-5">
-        <select 
-          ng-model="Converter.selector.from" 
-          ng-change="Converter.onBaseChange()"
-          ng-options="currency as currency for currency in Converter.currencies.from">
-        </select>
+    <div ng-show="{{ Converter.apiKey != null }}">
+      <div class="row">
+        <div class="column text-center">
+          <h1>Devise converter</h1>
+        </div>
       </div>
 
-      <div class="column small-2" ng-click="Converter.switchCurrencies()" ng-class="{'cursor-pointer': Converter.readyToConvert}">
-        <svg version="1.1" id="currency-switcher" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 48 48" style="enable-background:new 0 0 48 48;" xml:space="preserve">
-          <g>
-            <path id="left-arrow" d="M0.7,11.5c0,0,0,0.1-0.1,0.1c0,0.1-0.1,0.2-0.1,0.3V12c0,0.1,0,0.3,0,0.4s0,0.3,0,0.4v0.1c0,0.1,0.1,0.2,0.1,0.3 c0,0,0,0.1,0.1,0.1c0,0.1,0.1,0.2,0.1,0.2l0.1,0.1C1,13.7,1,13.7,1.1,13.8l0,0l11.2,9.9c0.4,0.3,0.8,0.5,1.3,0.5s1.1-0.2,1.5-0.7 c0.7-0.8,0.6-2-0.2-2.8l-7.4-6.5h37.9c1.1,0,2-0.9,2-2s-0.9-2-2-2H7.6L15,3.9c0.8-0.7,0.9-2,0.2-2.8s-2-0.9-2.8-0.2l-11.2,10l0,0 C1.1,11,1,11.1,1,11.1l-0.1,0.1C0.8,11.3,0.8,11.4,0.7,11.5z"/>
-            <path id="right-arrow" d="M47.3,36.5C47.3,36.5,47.3,36.4,47.3,36.5c0.1-0.2,0.2-0.3,0.2-0.4V36c0-0.1,0-0.3,0-0.4s0-0.3,0-0.4v-0.1 c0-0.1-0.1-0.2-0.1-0.3c0,0,0-0.1-0.1-0.1c0-0.1-0.1-0.2-0.1-0.2l-0.1-0.1c-0.1-0.1-0.1-0.1-0.2-0.2l0,0l-11.2-9.9 c-0.8-0.7-2.1-0.6-2.8,0.2c-0.7,0.8-0.6,2,0.2,2.8l7.4,6.5h-38c-1.1,0-2,0.9-2,2s0.9,2,2,2h37.9L33,44.1c-0.8,0.7-0.9,2-0.2,2.8 c0.4,0.4,0.9,0.7,1.5,0.7c0.5,0,0.9-0.2,1.3-0.5l11.2-9.9l0,0c0.1-0.1,0.1-0.1,0.2-0.2l0.1-0.1C47.2,36.7,47.2,36.6,47.3,36.5z"/>
-          </g>
-        </svg>
+      <hr/>
+
+      <!-- Selectors -->
+      <div class="row align-middle">
+        <div class="column small-5">
+          <select
+            ng-model="Converter.selector.from"
+            ng-change="Converter.onBaseChange()"
+            ng-options="currency as currency for currency in Converter.currencies.from">
+          </select>
+        </div>
+
+        <div class="column small-2" ng-click="Converter.switchCurrencies()" ng-class="{'cursor-pointer': Converter.readyToConvert}">
+          <svg version="1.1" id="currency-switcher" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 48 48" style="enable-background:new 0 0 48 48;" xml:space="preserve">
+            <g>
+              <path id="left-arrow" d="M0.7,11.5c0,0,0,0.1-0.1,0.1c0,0.1-0.1,0.2-0.1,0.3V12c0,0.1,0,0.3,0,0.4s0,0.3,0,0.4v0.1c0,0.1,0.1,0.2,0.1,0.3 c0,0,0,0.1,0.1,0.1c0,0.1,0.1,0.2,0.1,0.2l0.1,0.1C1,13.7,1,13.7,1.1,13.8l0,0l11.2,9.9c0.4,0.3,0.8,0.5,1.3,0.5s1.1-0.2,1.5-0.7 c0.7-0.8,0.6-2-0.2-2.8l-7.4-6.5h37.9c1.1,0,2-0.9,2-2s-0.9-2-2-2H7.6L15,3.9c0.8-0.7,0.9-2,0.2-2.8s-2-0.9-2.8-0.2l-11.2,10l0,0 C1.1,11,1,11.1,1,11.1l-0.1,0.1C0.8,11.3,0.8,11.4,0.7,11.5z"/>
+              <path id="right-arrow" d="M47.3,36.5C47.3,36.5,47.3,36.4,47.3,36.5c0.1-0.2,0.2-0.3,0.2-0.4V36c0-0.1,0-0.3,0-0.4s0-0.3,0-0.4v-0.1 c0-0.1-0.1-0.2-0.1-0.3c0,0,0-0.1-0.1-0.1c0-0.1-0.1-0.2-0.1-0.2l-0.1-0.1c-0.1-0.1-0.1-0.1-0.2-0.2l0,0l-11.2-9.9 c-0.8-0.7-2.1-0.6-2.8,0.2c-0.7,0.8-0.6,2,0.2,2.8l7.4,6.5h-38c-1.1,0-2,0.9-2,2s0.9,2,2,2h37.9L33,44.1c-0.8,0.7-0.9,2-0.2,2.8 c0.4,0.4,0.9,0.7,1.5,0.7c0.5,0,0.9-0.2,1.3-0.5l11.2-9.9l0,0c0.1-0.1,0.1-0.1,0.2-0.2l0.1-0.1C47.2,36.7,47.2,36.6,47.3,36.5z"/>
+            </g>
+          </svg>
+        </div>
+
+        <div class="column small-5">
+          <select
+            ng-model="Converter.selector.to"
+            ng-change="Converter.onDestChange()"
+            ng-options="currency as currency for currency in Converter.currencies.to">
+          </select>
+        </div>
       </div>
 
-      <div class="column small-5">
-        <select 
-          ng-model="Converter.selector.to" 
-          ng-change="Converter.onDestChange()"
-          ng-options="currency as currency for currency in Converter.currencies.to">
-        </select>
+      <hr />
+
+      <!-- Commission -->
+      <div class="row align-middle">
+        <div class="column">
+          <div class="input-group charges">
+            <span class="input-group-label">Bank charges</span>
+            <input class="input-group-field" type="number" ng-model="Converter.bank.charges" ng-change="Converter.convert()">
+            <div class="input-group-field">
+              <select ng-model="Converter.bank.selectedType"
+                      ng-options="type.value as type.display for type in Converter.bank.types"
+                      style="height: auto">
+              </select>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
 
-    <hr />
+      <hr />
 
-    <!-- Commission -->
-    <div class="row align-middle">
-      <div class="column">
-        <div class="input-group charges">
-          <span class="input-group-label">Bank charges</span>
-          <input class="input-group-field" type="number" ng-model="Converter.bank.charges" ng-change="Converter.convert()">
-          <div class="input-group-field">
-            <select ng-model="Converter.bank.selectedType"
-                    ng-options="type.value as type.display for type in Converter.bank.types"
-                    style="height: auto">
-            </select>
+      <!-- Convertion -->
+      <div class="row">
+        <div class="column">
+          <div class="input-group">
+            <kbd class="input-group-label">{{ Converter.selector.from }}</kbd>
+            <input class="input-group-field" type="number" ng-model="Converter.toConvert" ng-change="Converter.convert()">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="column">
+          <div class="input-group result">
+            <kbd class="input-group-label">{{ Converter.selector.to }}</kbd>
+            <input class="input-group-field" type="text" disabled="disabled" ng-model="Converter.result">
+          </div>
+        </div>
+      </div>
+
+      <hr/>
+
+      <!-- Details -->
+      <div class="row" ng-show="Converter.readyToConvert">
+        <div class="column">
+          <!-- Rate -->
+          <div>
+            <small class="text-secondary">
+              Rate:
+              {{ 1                    | currency : Converter.selector.from : 2 }} =
+              {{ Converter.rate.value | currency : Converter.selector.to   : 2 }}
+            </small>
+          </div>
+
+          <!-- Last update -->
+          <div>
+            <small class="text-secondary">
+              Last update: {{ Converter.rate.lastUpdate | date : 'medium' }}
+            </small>
+          </div>
+
+          <!-- Source -->
+          <div>
+            <small class="text-secondary">
+              From <em>{{ Converter.rate.source }}</em>
+              <span class="refresh-button" ng-click="Converter.resetCache()">Refresh</span>
+            </small>
           </div>
         </div>
       </div>
     </div>
 
-    <hr />
-
-    <!-- Convertion -->
-    <div class="row">
-      <div class="column">
-        <div class="input-group">
-          <kbd class="input-group-label">{{ Converter.selector.from }}</kbd>
-          <input class="input-group-field" type="number" ng-model="Converter.toConvert" ng-change="Converter.convert()">
-        </div>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="column">
-        <div class="input-group result">
-          <kbd class="input-group-label">{{ Converter.selector.to }}</kbd>
-          <input class="input-group-field" type="text" disabled="disabled" ng-model="Converter.result">
-        </div>
-      </div>
-    </div>
-    
-    <hr/>
-
-    <!-- Details -->
-    <div class="row" ng-show="Converter.readyToConvert">
-      <div class="column">
-        <!-- Rate -->
-        <div>
-          <small class="text-secondary">
-            Rate: 
-            {{ 1                    | currency : Converter.selector.from : 2 }} = 
-            {{ Converter.rate.value | currency : Converter.selector.to   : 2 }}
-          </small>
-        </div>
-
-        <!-- Last update -->
-        <div>
-          <small class="text-secondary">
-            Last update: {{ Converter.rate.lastUpdate | date : 'medium' }}
-          </small>
-        </div>
-
-        <!-- Source -->
-        <div>
-          <small class="text-secondary">
-            From <em>{{ Converter.rate.source }}</em>
-            <span class="refresh-button" ng-click="Converter.resetCache()">Refresh</span>
-          </small>
+    <div ng-show="{{ Converter.apiKey == null }}">
+      <div class="row align-middle" style="min-height: 300px">
+        <div class="column">
+          <div class="callout alert text-center">
+            Missing API Access key! <br /><span ng-click="Converter.onOpenConfiguration()" class="link">Configure extension</span>
+          </div>
         </div>
       </div>
     </div>

@@ -27,6 +27,12 @@ select {
   cursor: pointer;
 }
 
+.link {
+  color: #1779ba;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
 .cursor-pointer {
   cursor: pointer;
 }

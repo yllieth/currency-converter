@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="A basic chrome extension providing a devise converter">
+    <meta name="author" content="Sylvain RAGOT">
+
+    <title>A basic chrome extension providing a devise converter</title>
+
+    <!-- Scripts -->
+    <script type="text/javascript" src="js/jquery-2.2.4-min.js"></script>
+    <script type="text/javascript" src="js/settings.js"></script>
+
+    <!-- Cascading Style Sheets -->
+    <link href="css/foundation-flex-6.3.0.css" rel="stylesheet" media="screen">
+    <link href="css/main.css" rel="stylesheet" media="screen">
+  </head>
+
+  <style>
+    .container-row { height: 100vh; }
+    .explanations { margin-top: 40px; font-size: 20px; }
+    .form-row { margin-top: 40px; }
+    .form-row .input-group { height: 70px; }
+    .form-row input, .form-row .input-group-label { font-size: 20px; }
+    .form-row input[type=submit] { height: 70px; width: 200px; }
+    .hide { display: none; }
+  </style>
+
+  <body>
+    <div class="row align-middle container-row">
+      <div class="column">
+        <div class="row title-row">
+          <div class="column">
+            <h1>Settings</h1>
+          </div>
+        </div>
+
+        <div class="row explanations">
+          <div class="column">
+            This extension needs to download currency rates to work. These data are automatically fetched from <a href="https://currencylayer.com">currencylayer.com</a> webstite.
+            In order to make these calls, you <strong>must</strong> create an account on it and paste the <em>API access key</em> in the field below.
+            Without this key, we cannot download rates and make your conversions.
+
+            <br/>
+            <br/>
+            Creating an account on <a href="https://currencylayer.com">currencylayer.com</a> is fast, simple and free. Just :
+            <ul>
+              <li>head on <a href="https://currencylayer.com/signup?plan=1">their signup page</a> and fill-in the form.</li>
+              <li>visit the <a href="https://currencylayer.com/dashboard">dashboard page</a></li>
+              <li>copy the API access key (32 alphanumeric characters), paste in the field below</li>
+              <li>click the Save button</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="row form-row">
+          <div class="column">
+            <div class="input-group">
+              <span class="input-group-label">API access key</span>
+              <input class="input-group-field" type="text" placeholder="Ex: b2a905f07915cf43cbda5191962cb3d2" id="api-key">
+              <div class="input-group-button">
+                <input type="submit" class="button" value="Save" id="submit-button">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="callout success hide">
+          Your api key is valid and has been saved! You can now you the currency converter!!
+        </div>
+
+        <div class="callout alert hide">
+          Something went wrong while saving your key. Be sure it is the same than displayed in your <a href="https://currencylayer.com/dashboard">currencylayer dashboard page</a>.
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -113,7 +113,7 @@ angular
     function savePreviousBankChargeType(value)      { localStorage.setItem('previousBankChargeType', value); }
 
     function initialize() {
-      self.apiKey            = localStorage.getItem('apiKey')                      || 'b2a905f079253f43cbda5191c62cb3d2';
+      self.apiKey            = localStorage.getItem('apiKey');
       self.selector.from     = localStorage.getItem('previousOriginCurrency')      || '---';
       self.selector.to       = localStorage.getItem('previousDestinationCurrency') || '---';
       self.bank.charges      = parseInt(localStorage.getItem('previousBankCharge'))|| 0;
@@ -217,6 +217,10 @@ angular
         savePreviousDestinationCurrency(this.selector.to);
         convert(this.toConvert, this.selector.from, this.selector.to);
       }
+    };
+
+    this.onOpenConfiguration = function () {
+      chrome.runtime.openOptionsPage();
     };
 
     initialize();
