@@ -80,7 +80,11 @@ angular
             source: response.config.url
           };
 
-          self.result = amount * self.rate.value;
+          var charges = (self.bank.selectedType === 'percentage')
+            ? self.toConvert * self.bank.charges / 100
+            : self.bank.charges;
+
+          self.result = amount * self.rate.value + charges;
         });
     }
 
@@ -118,6 +122,16 @@ angular
       source: null
     };
 
+    // Information to deal with bank charges
+    this.bank = {
+      charges: 0,
+      selectedType: 'percentage',
+      types: [
+        { value: 'percentage', display: '%' },
+        { value: 'amount',     display: this.selector.to }
+      ]
+    };
+
     this.toConvert = undefined;
     this.result = undefined;
     this.readyToConvert = false;
@@ -139,6 +153,7 @@ angular
 
     this.onDestChange = function() {
       this.readyToConvert = isSettedUp(this.selector);
+      this.bank.types[1].display = this.selector.to;
 
       if (this.readyToConvert === true) {
         this.toConvert = 1;
@@ -151,7 +166,7 @@ angular
       var convertible = this.rate.value !== null;
 
       if (readyToConvert && convertible) {
-        this.result = this.toConvert * this.rate.value;
+        convert(this.toConvert, this.selector.from, this.selector.to);
       }
     };
 
@@ -166,6 +181,7 @@ angular
 
     this.switchCurrencies = function() {
       this.readyToConvert = isSettedUp(this.selector);
+
       if (this.readyToConvert === true) {
         var old = angular.copy(this.selector);
 
@@ -174,7 +190,8 @@ angular
           return currency != old.to;
         });
         this.selector.to = old.from;
+        this.bank.types[1].display = this.selector.to;
         convert(this.toConvert, this.selector.from, this.selector.to);
       }
-    }
+    };
   });

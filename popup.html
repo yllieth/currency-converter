@@ -56,6 +56,24 @@
 
     <hr />
 
+    <!-- Commission -->
+    <div class="row align-middle">
+      <div class="column">
+        <div class="input-group charges">
+          <span class="input-group-label">Bank charges</span>
+          <input class="input-group-field" type="number" ng-model="Converter.bank.charges" ng-change="Converter.convert()">
+          <div class="input-group-field">
+            <select ng-model="Converter.bank.selectedType"
+                    ng-options="type.value as type.display for type in Converter.bank.types"
+                    style="height: auto">
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr />
+
     <!-- Convertion -->
     <div class="row">
       <div class="column">

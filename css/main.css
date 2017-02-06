@@ -14,7 +14,7 @@ select {
 }
 
 /* converstion result */
-.input-group.result {
+.input-group.result, .input-group.charges {
   margin-bottom: 0 !important;
 }
 

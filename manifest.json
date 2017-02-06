@@ -2,7 +2,7 @@
 	"manifest_version": 2,
 	"name" :"Devise Converter",
 	"version" :"0.2",
-	"description" :"Simple devise converter - Pub free - No unneeded authorization ...",
+	"description" :"Simple devise converter - Pub free - Totally open source - No unneeded authorizations ...",
 	"browser_action" : {
 		"default_icon": "img/cash-converter.png",
 		"default_popup" :"popup.html"
