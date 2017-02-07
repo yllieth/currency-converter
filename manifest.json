@@ -1,8 +1,12 @@
 {
 	"manifest_version": 2,
-	"name" :"Devise Converter",
-	"version" :"0.1.0",
-	"description" :"Simple devise converter - Pub free - Totally open source - No unneeded authorizations ...",
+	"name" :"Simple Devise Converter",
+	"short_name": "Devise Converter",
+	"version" :"0.1.1",
+	"description" :"Simple devise converter - No ads - No unneeded authorizations - Totally open source ...",
+	"author": "yllieth",
+	"homepage_url": "https://github.com/yllieth/currency-converter",
+	"minimum_chrome_version": "42",
 	"browser_action" : {
 		"default_icon": "img/cash-converter.png",
 		"default_popup" :"popup.html"
